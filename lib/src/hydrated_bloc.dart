@@ -75,8 +75,8 @@ abstract class HydratedBloc<Event, State> extends Bloc<Event, State>
 abstract class HydratedCubit<State> extends Cubit<State>
     with HydratedMixin<State> {
   /// {@macro hydrated_cubit}
-  HydratedCubit(State state) : super(state) {
-    hydrate();
+  HydratedCubit(State state, [Storage? storage]) : super(state) {
+    hydrate(storage);
   }
 }
 
@@ -131,6 +131,8 @@ mixin HydratedMixin<State> on BlocBase<State> {
     } catch (error, stackTrace) {
       onError(error, stackTrace);
     }
+
+
   }
 
   State? _state;
